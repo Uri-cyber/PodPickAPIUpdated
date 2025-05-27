@@ -3,10 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Podcast Discovery - Coming Soon</title>
+    <title>Podcast Discovery - Find Your Next Favorite Show</title>
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px;}
+        .container {background: rgba(255, 255, 255, 0.95); border-radius: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); padding: 40px; max-width: 800px; width: 100%;}
+        h1 {text-align: center; margin-bottom: 10px; font-size: 2.5rem; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+        .subtitle {text-align: center; color: #666; margin-bottom: 30px;}
+        .interests-input {width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; margin-bottom: 20px;}
+        .submit-btn {width: 100%; padding: 15px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 10px; font-size: 18px; cursor: pointer;}
+        .podcast-card {background: #f8f9fa; border-radius: 15px; padding: 20px; margin-bottom: 15px;}
+        .recommendations {display: none; margin-top: 30px;}
+        .recommendations.active {display: block;}
+    </style>
 </head>
 <body>
-    <h1>Podcast Recommender - Coming Soon!</h1>
-    <p>This will be an amazing podcast recommendation app.</p>
+    <div class="container">
+        <h1>Discover Your Next Podcast</h1>
+        <p class="subtitle">Tell us what you're interested in, and we'll find the perfect podcasts for you</p>
+        <form id="interestsForm">
+            <input type="text" id="interests" class="interests-input" placeholder="Enter your interests (e.g., technology, comedy, science)">
+            <button type="submit" class="submit-btn">Get Podcast Recommendations</button>
+        </form>
+        <div class="recommendations" id="recommendations">
+            <h2>Recommended Podcasts</h2>
+            <div id="podcastList"></div>
+        </div>
+    </div>
+    <script>
+        const form = document.getElementById('interestsForm');
+        const recommendations = document.getElementById('recommendations');
+        const podcastList = document.getElementById('podcastList');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const interests = document.getElementById('interests').value;
+            
+            // Show recommendations section
+            recommendations.classList.add('active');
+            podcastList.innerHTML = '<p>Loading recommendations...</p>';
+            
+            // Simulate API call
+            setTimeout(() => {
+                podcastList.innerHTML = `
+                    <div class="podcast-card">
+                        <h3>Tech Podcast</h3>
+                        <p>A great podcast about ${interests}</p>
+                    </div>
+                    <div class="podcast-card">
+                        <h3>Daily ${interests} Show</h3>
+                        <p>Stay updated with the latest in ${interests}</p>
+                    </div>
+                `;
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
